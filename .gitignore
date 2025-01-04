@@ -1,0 +1,6 @@
+**/pycache
+.idea
+.env
+task.txt
+Pipfile.lock
+venv/

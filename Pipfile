@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+SQLAlchemy = {extras = ["asyncio"], version = "*"}
+alembic="*"
+passlib = {extras = ["bcrypt"], version = "*"}
+pydantic = {extras = ["email"], version="*"}
+python-jose = "*"
+psycopg2="*"
+asyncpg = "*"
+python-slugify="*"
+python-dotenv="*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.3"
