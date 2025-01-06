@@ -26,7 +26,7 @@ async def create_user(user: UserRegisterModel, db_session: AsyncSession) -> User
     return new_user
 
 
-async def login_user(user_login: UserLoginModel, db_session: Session) -> User:
+async def login_user(user_login: UserLoginModel, db_session: AsyncSession) -> User:
     user = await get_user_by_username(user=user_login, db_session=db_session)
 
     # Проверка наличия пользователя и статус аккаунта

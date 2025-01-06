@@ -15,6 +15,7 @@ psycopg2="*"
 asyncpg = "*"
 python-slugify="*"
 python-dotenv="*"
+websockets="*"
 
 [dev-packages]
 

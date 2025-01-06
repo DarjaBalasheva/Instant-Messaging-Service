@@ -30,23 +30,3 @@ class ChatModel(BaseModel):
     class Config:
         from_attributes = True
 
-
-# Модель для представления сообщений
-class MessageModel(BaseModel):
-    id: UUID
-    chat_id: UUID
-    sender_id: UUID
-    content: str
-    timestamp: datetime
-
-    class Config:
-        from_attributes = True
-
-
-# Модель для получения истории сообщений
-class MessageHistoryModel(BaseModel):
-    chat_id: UUID
-    messages: List[MessageModel]  # Список сообщений в чате
-
-    class Config:
-        from_attributes = True
