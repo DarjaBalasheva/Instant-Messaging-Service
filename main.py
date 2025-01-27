@@ -1,7 +1,8 @@
 from fastapi import FastAPI
+
+from app.apis.base import api_router
 from app.core.config import settings
 from app.db.db_model import Base, engine
-from app.apis.base import api_router
 
 
 # Create database

@@ -13,6 +13,8 @@ RUN pip install pipenv "fastapi-cache2[redis]"
 
 WORKDIR /app
 
+RUN pipenv lock
+
 COPY Pipfile Pipfile.lock ./
 
 # Установка зависимостей с помощью pipenv

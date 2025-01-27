@@ -1,8 +1,6 @@
-from datetime import datetime
-
-from pydantic import BaseModel, EmailStr, Field, validator
 from uuid import UUID
-from typing import List, Optional
+
+from pydantic import BaseModel, EmailStr, Field
 
 
 # Модель токен-сессии
@@ -36,4 +34,3 @@ class UserRegisterModel(BaseModel):
 class UserLoginModel(BaseModel):
     username: str
     password: str
-

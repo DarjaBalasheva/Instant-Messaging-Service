@@ -1,13 +1,13 @@
 # Функция для создания токена
+import os
 from datetime import datetime, timedelta, timezone
-from fastapi import HTTPException
 from uuid import UUID
 
+from dotenv import load_dotenv
+from fastapi import HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-import os
-from dotenv import load_dotenv
 from starlette import status
 
 load_dotenv()

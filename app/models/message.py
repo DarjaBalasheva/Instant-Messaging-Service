@@ -1,8 +1,7 @@
 from datetime import datetime
-
-from pydantic import BaseModel, EmailStr, Field, validator
 from uuid import UUID
-from typing import List, Optional
+
+from pydantic import BaseModel
 
 
 class NewMessageModel(BaseModel):
@@ -31,7 +30,7 @@ class MessageModel(BaseModel):
 # Модель для получения истории сообщений
 class MessageHistoryModel(BaseModel):
     chat_id: UUID
-    messages: List[MessageModel]  # Список сообщений в чате
+    messages: list[MessageModel]  # Список сообщений в чате
 
     class Config:
         from_attributes = True

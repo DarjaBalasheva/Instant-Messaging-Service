@@ -1,16 +1,12 @@
 from fastapi import Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
+from passlib.context import CryptContext
 from sqlalchemy.ext.asyncio import AsyncSession
-from starlette import status
 
 from app.core.security import get_decode_userid, oauth2_scheme
 from app.db.db_connect import get_db_session
 from app.db.db_model import User
 from app.db.user_repository import create_user_in_db, get_user_by_username
-from app.models.user import UserRegisterModel, UserLoginModel, UserModel
-from sqlalchemy.orm import Session
-from passlib.context import CryptContext
-
+from app.models.user import UserLoginModel, UserModel, UserRegisterModel
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -26,7 +22,7 @@ async def create_user(user: UserRegisterModel, db_session: AsyncSession) -> User
     return new_user
 
 
-async def login_user(user_login: UserLoginModel, db_session: AsyncSession) -> User:
+async def login_user(user_login: UserLoginModel, db_session: AsyncSession) -> UserModel:
     user = await get_user_by_username(user=user_login, db_session=db_session)
 
     # Проверка наличия пользователя и статус аккаунта
@@ -42,7 +38,10 @@ async def login_user(user_login: UserLoginModel, db_session: AsyncSession) -> Us
     return user
 
 
-async def get_current_user(db_session: AsyncSession = Depends(get_db_session), token: str = Depends(oauth2_scheme)):
+async def get_current_user(
+    db_session: AsyncSession = Depends(get_db_session),
+    token: str = Depends(oauth2_scheme),
+) -> UserModel:
     user_id = get_decode_userid(token=token)
     user = await db_session.get(User, user_id)
     if user is None:
